@@ -1,8 +1,9 @@
-package javadownloader;
+package de.hbz;
+
+import static de.hbz.Main.input;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import static javadownloader.Main.input;
 /**
  * 
  * @author Alessio Pellerito

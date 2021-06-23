@@ -1,8 +1,8 @@
-package javadownloader;
+package de.hbz;
 
-import static javadownloader.Constants.CONTENT_URL;
-import static javadownloader.Constants.PATH_TO;
-import static javadownloader.LogManager.*;
+import static de.hbz.Constants.CONTENT_URL;
+import static de.hbz.Constants.PATH_TO;
+import static de.hbz.LogManager.*;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package javadownloader;
+package de.hbz;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,10 +6,10 @@
  * Path.
  * 
  */
-package javadownloader;
+package de.hbz;
 
-import static javadownloader.Constants.*;
-import static javadownloader.LogManager.logger;
+import static de.hbz.Constants.*;
+import static de.hbz.LogManager.logger;
 
 import java.io.File;
 import java.nio.file.Paths;

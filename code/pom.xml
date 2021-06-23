@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>de.hbz-nrw</groupId>
+  <groupId>de.hbz</groupId>
   <artifactId>javadownloader</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Java Downloader</name>
-  <description>This program downloads the resources of the url on dc.xml file to another path and replaces itself with this new path</description>
+  <description>Parses dc.xml file and save url ressource from oai-harvester submission jobs</description>
 
   <properties>
     <javaVersion>1.8</javaVersion>
@@ -35,7 +35,7 @@
 	        </descriptorRefs>
 	        <archive>
 	            <manifest>
-	                <mainClass>de.hbz-nrw.Main</mainClass>
+	                <mainClass>de.hbz.Main</mainClass>
 	            </manifest>
 	        </archive>
 	    </configuration>
