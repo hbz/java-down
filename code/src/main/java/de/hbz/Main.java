@@ -12,6 +12,7 @@ import static de.hbz.Constants.*;
 import static de.hbz.LogManager.logger;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -40,26 +41,30 @@ public class Main {
 		    File[] recordList = new File(PATH_FROM.toString()).listFiles(File::isDirectory);
 		    
 		    if(recordList != null) {
-		    
+		    	
 		    	ExecutorService pool = Executors.newFixedThreadPool(MAX_THREADS);
 		    	
 		        for(File f : recordList) {
-		        	
+		        
 		        	if(!doneFileExists(f)) {
 		      
 						XMLParser parser = new XMLParser(Paths.get(f.toString(), DIR_CONTENT, DC_XML).toFile());
 						Document docDcXML = parser.readDocument();
-				  
+						
+						Path toStream = Paths.get(f.toString(), DIR_CONTENT, DIR_STREAM);
+						
 						List<Node> nodesInRecord = docDcXML.selectNodes("/dc:records/dc:record");
 						
 						File logFile = new File(PATH_TO_LOG.toString(), f.getName().concat(_LOG_XML)); 
-	
-						for(Node n : nodesInRecord) {
+						
+						
+						for(Node node : nodesInRecord) {
 									
-							pool.execute(new TaskExecutor(n, parser, docDcXML, logFile));
+							pool.execute(new TaskExecutor(node, parser, docDcXML, logFile, toStream));
 							
 						}							        		
 					}
+		        	
 			    }
 		        pool.shutdown();
 		        while(!pool.isTerminated()) {}
