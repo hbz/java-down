@@ -1,14 +1,12 @@
 package de.hbz;
 
 import static de.hbz.Constants.CONTENT_URL;
-import static de.hbz.LogManager.*;
+import static de.hbz.LogManager.logger;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-
 import org.apache.commons.io.FileUtils;
 import org.dom4j.Document;
 import org.dom4j.Node;
@@ -42,10 +40,10 @@ public class TaskExecutor implements Runnable {
 	public void run() {
 		
 		try {
+			LogManager logManager = new LogManager();
 			
 			Node nodeFirstIdent = node.selectSingleNode("dc:identifier");
 			Boolean hasAttrContentURL = nodeFirstIdent.valueOf("@xsi:type").equals(CONTENT_URL);
-			String log = null;
 			
 			if(hasAttrContentURL) {
 				
@@ -63,9 +61,7 @@ public class TaskExecutor implements Runnable {
 						break;
 					
 					default:
-						//logFileFormat(node, "URL is not valid");
-						log += "<!-- Record wasn't downloaded, because URL is not valid -->\n";
-						log += node.asXML() + "\n";
+						logManager.logFileFormat(node, "URL is not valid");
 						logger.warn("Record not downloaded, because URL is not valid");
 						break;
 				}
@@ -73,14 +69,12 @@ public class TaskExecutor implements Runnable {
 			}
 
 			if(!hasAttrContentURL) {
-				//logFileFormat(node, "ContentURL is missing");
-				log += "<!-- Record wasn't downloaded, because ContentUrl is missing -->\n";
-				log += node.asXML() + "\n";
+				logManager.logFileFormat(node, "ContentURL is missing");
 				logger.warn("Record not downloaded, because ContentUrl is missing");
 			}
-
-			//FileUtils.writeLines(logFile, log);
-			FileUtils.writeStringToFile(logFile, log, StandardCharsets.UTF_8);
+			
+			logManager.print(logFile);
+			
 		} 
 		
 		catch (IOException e) {

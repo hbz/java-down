@@ -9,7 +9,7 @@
 package de.hbz;
 
 import static de.hbz.Constants.*;
-import static de.hbz.LogManager.logger;
+import static de.hbz.LogManager.*;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -45,24 +45,23 @@ public class Main {
 		    	ExecutorService pool = Executors.newFixedThreadPool(MAX_THREADS);
 		    	
 		        for(File f : recordList) {
-		        
+
 		        	if(!doneFileExists(f)) {
-		      
+		        		
 						XMLParser parser = new XMLParser(Paths.get(f.toString(), DIR_CONTENT, DC_XML).toFile());
 						Document docDcXML = parser.readDocument();
 						
 						Path toStream = Paths.get(f.toString(), DIR_CONTENT, DIR_STREAM);
 						
 						List<Node> nodesInRecord = docDcXML.selectNodes("/dc:records/dc:record");
-						
+		
 						File logFile = new File(PATH_TO_LOG.toString(), f.getName().concat(_LOG_XML)); 
-						
 						
 						for(Node node : nodesInRecord) {
 									
 							pool.execute(new TaskExecutor(node, parser, docDcXML, logFile, toStream));
-							
-						}							        		
+						}
+						
 					}
 		        	
 			    }
@@ -76,7 +75,7 @@ public class Main {
 		}
 		
 		if(args.length == 0 || args.length > 1)
-			logger.warn("Argument required! Insert Path in this format:\n /rootdirectory/nextdirectory/nextdirectory, i.e. /ingest-storage/buw/oai-dnb ");
+			logger.warn("Argument required! Insert existent Path in this format:\n /rootdirectory/nextdirectory/nextdirectory, i.e. /ingest-storage/buw/oai-dnb ");
 	}
 	
 	/**
