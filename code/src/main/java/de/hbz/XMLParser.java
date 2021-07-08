@@ -8,7 +8,6 @@ import org.dom4j.DocumentException;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
-import org.dom4j.io.OutputFormat;
 
 
 /**
@@ -19,23 +18,16 @@ import org.dom4j.io.OutputFormat;
 
 public class XMLParser {
 	
-	// reading
 	private SAXReader reader;
-	
-	//writing
-	private OutputFormat format;
-
 	private File file;
+
 	
 	public XMLParser(File file) {
    
-	    reader = new SAXReader();
-		
-		format = OutputFormat.createPrettyPrint();
-		format.setEncoding("UTF-8"); 
-		
+	    reader = new SAXReader();	
 		this.file = file;
 	}
+	
 	
 	public Document readDocument() {
 		try {
@@ -49,8 +41,7 @@ public class XMLParser {
 	
 	public void replaceURLinDcXML(Document doc, Node n, String replaceText) {
 		try {
-			XMLWriter writer = new XMLWriter(new FileOutputStream(this.file), this.format);
-			writer.setEscapeText(false);
+			XMLWriter writer = new XMLWriter(new FileOutputStream(this.file));
 			n.setText(replaceText);
 			writer.write(doc);
 			writer.flush();

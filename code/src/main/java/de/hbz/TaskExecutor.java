@@ -50,7 +50,9 @@ public class TaskExecutor implements Runnable {
 				URL urlInIdent = new URL(nodeFirstIdent.getText());
 				
 				File newPath = new File(toStream.toString(), urlInIdent.getPath());
-
+				
+				
+				
 				int dotNumInUrl = (int) newPath.getAbsolutePath().chars().filter(num -> num == '.').count();
 				
 				switch(dotNumInUrl) {
