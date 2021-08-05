@@ -38,7 +38,6 @@ public class Main {
 
 			input = args[0];
 
-			System.exit(1);
 		    File[] recordList = new File(PATH_FROM.toString()).listFiles(File::isDirectory);
 		    
 		    if(recordList != null) {
