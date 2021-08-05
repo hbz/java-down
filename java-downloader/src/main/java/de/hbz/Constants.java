@@ -16,7 +16,7 @@ public class Constants {
 	 * Path Constants
 	 */
 	protected static final Path PATH_FROM 		= 	Paths.get(input).toAbsolutePath();
-	protected static final Path PATH_TO_LOG		=   Paths.get(input.split("/")[0] + "/" + input.split("/")[1] + "/" + input.split("/")[2] + "/" + "skript-logs");
+	protected static final Path PATH_TO_LOG		=   Paths.get(input.substring(0,input.lastIndexOf("/")) + "/skript-logs");
 	protected static final String DONE_FILE 	= 	"done";
 	protected static final String _LOG_XML 		= 	"_log.xml";
 	protected static final String DC_XML 		= 	"dc.xml";

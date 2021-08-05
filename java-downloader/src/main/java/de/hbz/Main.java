@@ -10,16 +10,12 @@ package de.hbz;
 
 import static de.hbz.Constants.*;
 import static de.hbz.LogManager.*;
-
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-//import org.w3c.dom.Document;
-//import org.w3c.dom.NodeList;
 
 import java.lang.String;
 
@@ -41,7 +37,8 @@ public class Main {
 		if(args.length == 1) {
 
 			input = args[0];
-			
+
+			System.exit(1);
 		    File[] recordList = new File(PATH_FROM.toString()).listFiles(File::isDirectory);
 		    
 		    if(recordList != null) {
