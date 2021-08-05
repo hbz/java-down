@@ -10,6 +10,7 @@ import org.dom4j.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 /**
  * 
  * @author Alessio Pellerito
@@ -24,14 +25,11 @@ public class LogManager {
 
 	public synchronized void logFileFormat(Node n, String reason) {
 		logText.add("<!-- Record wasn't downloaded, because " + reason + " -->");
-		logText.add(n.asXML() + "\n");
-		
+		logText.add(n.asXML() + "\n");		
 	}
 	
 	public synchronized void print(File file) throws IOException {
 		FileUtils.writeLines(file, logText, true);
-	}
-
-	
+	}	
 
 }

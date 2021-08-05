@@ -17,6 +17,10 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+//import org.w3c.dom.Document;
+//import org.w3c.dom.NodeList;
+
 import java.lang.String;
 
 import org.dom4j.Document;
@@ -53,12 +57,12 @@ public class Main {
 						
 						Path toStream = Paths.get(f.toString(), DIR_CONTENT, DIR_STREAM);
 						
-						List<Node> nodesInRecord = docDcXML.selectNodes("/dc:records/dc:record");
-		
+						List<Node> nodesInRecord = docDcXML.selectNodes("/dc:records/dc:record");		
+
 						File logFile = new File(PATH_TO_LOG.toString(), f.getName().concat(_LOG_XML)); 
 						
 						for(Node node : nodesInRecord) {
-									
+
 							pool.execute(new TaskExecutor(node, parser, docDcXML, logFile, toStream));
 						}
 						

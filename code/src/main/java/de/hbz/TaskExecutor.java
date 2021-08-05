@@ -25,7 +25,6 @@ public class TaskExecutor implements Runnable {
 	private File logFile;
 	private Path toStream;
 	
-	
 	public TaskExecutor(Node node, XMLParser parser, Document docDcXML, File logFile, Path toStream) {
 		this.node = node;
 		this.parser = parser;
@@ -33,8 +32,6 @@ public class TaskExecutor implements Runnable {
 		this.logFile = logFile;
 		this.toStream = toStream;
 	}
-	
-	
 	
 	@Override
 	public void run() {
@@ -50,8 +47,6 @@ public class TaskExecutor implements Runnable {
 				URL urlInIdent = new URL(nodeFirstIdent.getText());
 				
 				File newPath = new File(toStream.toString(), urlInIdent.getPath());
-				
-				
 				
 				int dotNumInUrl = (int) newPath.getAbsolutePath().chars().filter(num -> num == '.').count();
 				
@@ -72,7 +67,7 @@ public class TaskExecutor implements Runnable {
 
 			if(!hasAttrContentURL) {
 				logManager.logFileFormat(node, "ContentURL is missing");
-				logger.warn("Record not downloaded, because ContentUrl is missing");
+				logger.warn("Record not downloaded, because ContentUrl is missing or incorrectly formatted");
 			}
 			
 			logManager.print(logFile);
