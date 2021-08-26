@@ -36,9 +36,10 @@ public class TaskExecutor implements Runnable {
 	@Override
 	public void run() {
 		
+		LogManager logManager = new LogManager();
+		
 		try {
-			LogManager logManager = new LogManager();
-			
+				
 			Node nodeFirstIdent = node.selectSingleNode("dc:identifier");
 			Boolean hasAttrContentURL = nodeFirstIdent.valueOf("@xsi:type").equals(CONTENT_URL);
 			
@@ -75,7 +76,8 @@ public class TaskExecutor implements Runnable {
 		} 
 		
 		catch (IOException e) {
-			e.printStackTrace();
+			logManager.logFileFormat(node, "URL cannot be opened");
+			logger.warn("Record not downloaded, because URL cannot be opened");
 		}
 	}
 
